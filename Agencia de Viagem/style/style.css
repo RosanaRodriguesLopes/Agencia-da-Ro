@@ -1,0 +1,138 @@
+*{
+    margin: 0px;
+}
+body{
+    font-size:14px ;
+    font-family: sans-serif;
+}
+
+.header {
+    width: 100%;
+    background-color: #FFB7B7 ;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.headerImagem{
+    width: 300px;
+}
+
+.headerMenu{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerMenuBotao{
+display: flex;
+align-content: space-around;
+justify-content: space-around;
+width: 100%;
+align-items: center;
+}
+
+.MenuBotao:hover{
+    background-color: blanchedalmond;
+}
+
+.MenuBotao{
+font-size: 25px;
+background-color: antiquewhite;
+padding: 10px;
+border-radius:  10px; 
+margin: 10px;
+text-decoration: none;
+}
+
+.headerInput{
+    width: 400px;
+    height: 40px;
+    border-radius: 20px;
+
+}
+
+.Conteudo{
+    width: 100%;
+    height: 100vh;
+    background-image: url(/imagens/banner.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.Conteudo  h1 {
+font-size: 60px;
+width: 500px;
+color: #663333;
+}
+
+.FooterMenuBotao{
+    width: 400px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgpromocoes{
+    width: 100%;
+}
+
+.Formcontato{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    font-size: 30px;
+}
+
+.Formcontato > input{
+    width: 700px;
+    height: 40px;
+    margin: 10px;
+}
+
+
+.card--container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid gray;
+    width: 18rem;
+    border-radius: 20px;
+    height: 280px;
+    margin: 20px;
+  }
+
+  .card--body{
+      padding: 1rem;
+  }
+
+  .card--body h3{
+    margin-bottom: 1rem;
+}
+  
+  .card--img img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .sessãodestino{
+      min-height: 80vh;
+      padding: 2rem 6rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+  

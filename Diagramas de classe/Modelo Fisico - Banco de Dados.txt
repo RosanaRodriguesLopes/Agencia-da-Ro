@@ -1,0 +1,201 @@
+USE [master]
+GO
+/****** Object:  Database [AgenciaDeViagem]    Script Date: 20/12/2021 22:43:17 ******/
+CREATE DATABASE [AgenciaDeViagem]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'AgenciaDeViagem', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVERRH493022\MSSQL\DATA\AgenciaDeViagem.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'AgenciaDeViagem_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVERRH493022\MSSQL\DATA\AgenciaDeViagem_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [AgenciaDeViagem] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [AgenciaDeViagem].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET RECOVERY FULL 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET  MULTI_USER 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [AgenciaDeViagem] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [AgenciaDeViagem] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'AgenciaDeViagem', N'ON'
+GO
+ALTER DATABASE [AgenciaDeViagem] SET QUERY_STORE = OFF
+GO
+USE [AgenciaDeViagem]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 20/12/2021 22:43:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[contatos]    Script Date: 20/12/2021 22:43:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[contatos](
+	[Id_Contato] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [nvarchar](max) NULL,
+	[CPF] [nvarchar](max) NULL,
+	[Email] [nvarchar](max) NULL,
+	[Senha] [int] NOT NULL,
+	[ContatoId_Contato] [int] NULL,
+	[PromoçãoId_Promoção] [int] NULL,
+ CONSTRAINT [PK_contatos] PRIMARY KEY CLUSTERED 
+(
+	[Id_Contato] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[passagens]    Script Date: 20/12/2021 22:43:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[passagens](
+	[Id_Passagem] [int] IDENTITY(1,1) NOT NULL,
+	[Destino] [nvarchar](max) NULL,
+	[Data_Ida] [datetime2](7) NOT NULL,
+	[Data_Volta] [datetime2](7) NOT NULL,
+	[Valor] [nvarchar](max) NULL,
+	[Id_Contato] [int] NOT NULL,
+	[contatoId_Contato] [int] NULL,
+	[Id_Promoção] [int] NOT NULL,
+	[promoçãoId_Promoção] [int] NULL,
+ CONSTRAINT [PK_passagens] PRIMARY KEY CLUSTERED 
+(
+	[Id_Passagem] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[promoções]    Script Date: 20/12/2021 22:43:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[promoções](
+	[Id_Promoção] [int] IDENTITY(1,1) NOT NULL,
+	[Desconto] [nvarchar](max) NULL,
+	[Valor_Final] [nvarchar](max) NULL,
+ CONSTRAINT [PK_promoções] PRIMARY KEY CLUSTERED 
+(
+	[Id_Promoção] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Index [IX_contatos_ContatoId_Contato]    Script Date: 20/12/2021 22:43:18 ******/
+CREATE NONCLUSTERED INDEX [IX_contatos_ContatoId_Contato] ON [dbo].[contatos]
+(
+	[ContatoId_Contato] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_contatos_PromoçãoId_Promoção]    Script Date: 20/12/2021 22:43:18 ******/
+CREATE NONCLUSTERED INDEX [IX_contatos_PromoçãoId_Promoção] ON [dbo].[contatos]
+(
+	[PromoçãoId_Promoção] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_passagens_contatoId_Contato]    Script Date: 20/12/2021 22:43:18 ******/
+CREATE NONCLUSTERED INDEX [IX_passagens_contatoId_Contato] ON [dbo].[passagens]
+(
+	[contatoId_Contato] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_passagens_promoçãoId_Promoção]    Script Date: 20/12/2021 22:43:18 ******/
+CREATE NONCLUSTERED INDEX [IX_passagens_promoçãoId_Promoção] ON [dbo].[passagens]
+(
+	[promoçãoId_Promoção] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[contatos]  WITH CHECK ADD  CONSTRAINT [FK_contatos_contatos_ContatoId_Contato] FOREIGN KEY([ContatoId_Contato])
+REFERENCES [dbo].[contatos] ([Id_Contato])
+GO
+ALTER TABLE [dbo].[contatos] CHECK CONSTRAINT [FK_contatos_contatos_ContatoId_Contato]
+GO
+ALTER TABLE [dbo].[contatos]  WITH CHECK ADD  CONSTRAINT [FK_contatos_promoções_PromoçãoId_Promoção] FOREIGN KEY([PromoçãoId_Promoção])
+REFERENCES [dbo].[promoções] ([Id_Promoção])
+GO
+ALTER TABLE [dbo].[contatos] CHECK CONSTRAINT [FK_contatos_promoções_PromoçãoId_Promoção]
+GO
+ALTER TABLE [dbo].[passagens]  WITH CHECK ADD  CONSTRAINT [FK_passagens_contatos_contatoId_Contato] FOREIGN KEY([contatoId_Contato])
+REFERENCES [dbo].[contatos] ([Id_Contato])
+GO
+ALTER TABLE [dbo].[passagens] CHECK CONSTRAINT [FK_passagens_contatos_contatoId_Contato]
+GO
+ALTER TABLE [dbo].[passagens]  WITH CHECK ADD  CONSTRAINT [FK_passagens_promoções_promoçãoId_Promoção] FOREIGN KEY([promoçãoId_Promoção])
+REFERENCES [dbo].[promoções] ([Id_Promoção])
+GO
+ALTER TABLE [dbo].[passagens] CHECK CONSTRAINT [FK_passagens_promoções_promoçãoId_Promoção]
+GO
+USE [master]
+GO
+ALTER DATABASE [AgenciaDeViagem] SET  READ_WRITE 
+GO

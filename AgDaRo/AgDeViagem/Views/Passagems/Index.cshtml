@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AgDeViagem.Models.Passagem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a class="btn btn-info" asp-action="Create">Create New</a>
+</p>
+<div class="contenteCard">
+@foreach (var item in Model) {
+
+    <div class="card m-3" style="width: 18rem;">
+  <img src="@Html.DisplayFor(modelItem => item.imgPassagem)" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Destino)</h5>
+     <strong>Dada Saida:</strong> @Html.DisplayFor(modelItem => item.Data_Ida)<br/>
+     <strong>Data Retorno:</strong> @Html.DisplayFor(modelItem => item.Data_Volta)
+    <p class="card-text"> </p>
+    <div class="btn btn-primary">R$ @Html.DisplayFor(modelItem => item.Valor),00</div>
+        <a asp-action="Edit" asp-route-id="@item.Id_Passagem">Edit</a>
+        <a asp-action="Details" asp-route-id="@item.Id_Passagem">Details</a>
+        <a asp-action="Delete" asp-route-id="@item.Id_Passagem">Delete</a>
+  </div>
+</div>
+}
+</div>
